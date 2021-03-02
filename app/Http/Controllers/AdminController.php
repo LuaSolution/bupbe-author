@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Cate;
 use App\Config;
+use App\Mail;
 use App\News;
 use App\Product;
 use App\Store;
-use App\Cate;
 use App\User;
-use App\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -156,7 +155,7 @@ class AdminController extends Controller
             $msg = 'Image uploaded successfully';
             $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
 
-            @header('Content-type: text/html; charset=utf-8');
+@header('Content-type: text/html; charset=utf-8');
             echo $response;
         }
     }
@@ -444,10 +443,12 @@ class AdminController extends Controller
         $query = $request->query('query');
 
         $productModel = new Product();
-        if($query == null || $query == '')
-        $products = $productModel->getListProduct();
-        else 
-        $products = $productModel->getListProductByQuery($query);
+        if ($query == null || $query == '') {
+            $products = $productModel->getListProduct();
+        } else {
+            $products = $productModel->getListProductByQuery($query);
+        }
+
         $this->data['products'] = $products;
 
         return view('admin.product_list', $this->data);
@@ -636,6 +637,29 @@ class AdminController extends Controller
         $this->data['newss'] = $newss;
 
         return view('admin.news_list', $this->data);
+    }
+
+    public function getListContact()
+    {
+
+        $newsModel = new Mail();
+        $newss = $newsModel->getListContact();
+        $this->data['contacts'] = $newss;
+
+        return view('admin.contact_list', $this->data);
+    }
+
+    public function getContact($id) {
+
+        $m = new Mail();
+        $store = $m->getById($id);
+
+        if ($store) {
+            $this->data['contact'] = $store;
+            return view('admin.contact_edit', $this->data);
+        } else {
+            return redirect()->route('adgetListContact');
+        }
     }
 
     /**
@@ -984,115 +1008,6 @@ class AdminController extends Controller
             return redirect()->route('adgetListCate')->with('success', 'Xóa thành công!');
         } else {
             return redirect()->route('adgetListCate')->with('error', 'Xóa thất bại!');
-        }
-    }
-
-    /**
-     * Get list cart page
-     */
-    public function getListCart()
-    {
-
-        $cartModel = new Cart();
-        $carts = $cartModel->getListCart();
-        $this->data['carts'] = $carts;
-
-        return view('admin.cart_list', $this->data);
-    }
-
-    /**
-     * Get edit cart page
-     */
-    public function getEditCart($id)
-    {
-
-        $cartModel = new Cart();
-        $cart = $cartModel->getCartById($id);
-
-        if ($cart) {
-            $this->data['cart'] = $cart;
-
-            $products = DB::table('cart_detail')->leftJoin('product', 'product.id', '=', 'cart_detail.product_id')->where('cart_id', $id)->select('product.title', 'product.slug', 'product.cover', 'cart_detail.number', 'cart_detail.price')->get();
-            $this->data['products'] = $products;
-            return view('admin.cart_edit', $this->data);
-        } else {
-            return redirect()->route('adgetListCart');
-        }
-
-    }
-
-    /**
-     * Cart edit cart page
-     */
-    public function postEditCart($id, Request $request)
-    {
-
-        // name
-        $name = $request->input('name');
-        if (!$name) {
-            $name = "";
-        }
-        // phone
-        $phone = $request->input('phone');
-        if (!$phone) {
-            $phone = "";
-        }
-        // address
-        $address = $request->input('address');
-        if (!$address) {
-            $address = "";
-        }
-        // email
-        $email = $request->input('email');
-        if (!$email) {
-            $email = "";
-        }
-        // note
-        $note = $request->input('note');
-        if (!$note) {
-            $note = "";
-        }
-        // status
-        $status = $request->input('status');
-        if (!$status) {
-            $status = 1;
-        }
-        
-
-        $dataUpdate = [
-            'name' => $name,
-            'phone' => $phone,
-            'address' => $address,
-            'email' => $email,
-            'note' => $note,
-            'status' => $status,
-            'updated_at' => date('Y-m-d H:i:s'),
-        ];
-
-        $cartModel = new Cart();
-        $result = $cartModel->updateCart($id, $dataUpdate);
-        if ($result > 0) {
-            return redirect()->route('adgetEditCart', ['id' => $id])->with('success', 'Cập nhật thành công!');
-        } else {
-            return redirect()->route('adgetEditCart', ['id' => $id])->with('error', 'Cập nhật thất bại!');
-        }
-
-    }
-
-    /**
-     * Delete cart
-     */
-    public function getDelCart($id)
-    {
-
-        $cartModel = new Cart();
-        $result = $cartModel->deleteCart($id);
-
-        if ($result > 0) {
-            DB::table('cart_detail')->where('cart_id', $id)->delete();
-            return redirect()->route('adgetListCart')->with('success', 'Xóa thành công!');
-        } else {
-            return redirect()->route('adgetListCart')->with('error', 'Xóa thất bại!');
         }
     }
 }

@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Config;
-use Illuminate\Http\Request;
-use App\Product;
+use App\Mail;
 use App\News;
-use App\Store;
-use App\Cart;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
 
+    public function changeLanguage($language)
+    {
+        \Session::put('website_language', $language);
+
+        return redirect()->back();
+    }
     /**
      * Get home page
      */
@@ -29,12 +32,11 @@ class MainController extends Controller
 
         // echo "<pre>";
         // print_r($products);die;
-        
 
         return view('client.index');
 
     }
-    
+
     /**
      * Get news page
      */
@@ -65,13 +67,24 @@ class MainController extends Controller
             $this->data['news'] = $news;
             config(['config.title' => $news->title, 'config.description' => $news->description]);
             return view('client.news-detail', $this->data);
-        }else{
+        } else {
             return view('404', $this->data);
         }
     }
 
+    public function postContact(Request $req)
+    {
+        $dataInsert = [
+            'name' => $req->name,
+            'email' => $req->email,
+            'content' => $req->content,
+            'phone' => $req->phone,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
 
-    public function postContact(Request $req) {
+        $m = new Mail();
+        $result = $m->insertMail($dataInsert);
         return redirect()->back();
     }
 }

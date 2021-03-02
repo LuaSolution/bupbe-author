@@ -141,11 +141,13 @@ Author URL: http://w3layouts.com
           <div class="row">
             <div class="col-lg-8 footer-left">
               <p class="m-0">© Copyright 2020 Eccentric Portfolio.
+              <a href="{!! route('user.change-language', ['en']) !!}">English</a>
+<a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a>
                 <!-- <a href="https://w3layouts.com">W3layouts</a></p> -->
             </div>
             <div class="col-lg-4 footer-right text-lg-right text-center mt-lg-0 mt-3">
               <ul class="social m-0 p-0">
-                <li><a href="https://www.facebook.com/linhgiang.bui.1217"><span class="fa fa-facebook"></span></a></li>
+                <li><a href="https://www.facebook.com/linhgiang.bui.1217" target="_blank"><span class="fa fa-facebook"></span></a></li>
               </ul>
             </div>
           </div>
@@ -222,21 +224,7 @@ Author URL: http://w3layouts.com
         'Tập 5'
       ];
 
-      var msTitles = new MomentumSlider({
-        el: slidersContainer,
-        cssClass: 'ms--titles',
-        range: [0, 4],
-        rangeContent: function (i) {
-          return '<h3>' + titles[i] + '</h3>';
-        },
-        vertical: true,
-        reverse: true,
-        style: {
-          opacity: [0, 1]
-        },
 
-        interactive: false
-      });
 
       // Get pagination items
       var pagination = document.querySelector('.pagination');
@@ -254,7 +242,7 @@ Author URL: http://w3layouts.com
           return '<div class="ms-slide__image-container"><div class="ms-slide__image"></div></div>';
         },
         // Syncronize the other sliders
-        sync: [msNumbers, msTitles],
+        sync: [msNumbers],
         // Styles to interpolate as we move the slider
         style: {
           '.ms-slide__image': {

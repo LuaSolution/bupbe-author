@@ -1,8 +1,8 @@
 <?php
 
-Route::middleware(['runall'])->group(function () {
+Route::middleware(['runall', 'locale'])->group(function () {
     Route::get('/', 'MainController@getHome')->name('getHome');
-
+    Route::get('change-language/{language}', 'MainController@changeLanguage')->name('user.change-language');
     Auth::routes();
 
     // Admin ***************************************
@@ -16,14 +16,6 @@ Route::middleware(['runall'])->group(function () {
             // Home
             Route::get('/', 'AdminController@getHome')->name('adgetHome');
             Route::post('/config', 'AdminController@updateConfig')->name('adupdateConfig');
-
-            // Product
-            Route::get('/product-add', 'AdminController@getAddProduct')->name('adgetAddProduct');
-            Route::post('/product-add', 'AdminController@postAddProduct')->name('adpostAddProduct');
-            Route::get('/product-edit/{id}', 'AdminController@getEditProduct')->name('adgetEditProduct');
-            Route::post('/product-edit/{id}', 'AdminController@postEditProduct')->name('adpostEditProduct');
-            Route::get('/product/{query?}', 'AdminController@getListProduct')->name('adgetListProduct');
-            Route::get('/product-del/{id}', 'AdminController@getDelProduct')->name('adgetDelProduct');
 
             // Cate
             Route::get('/cate-add', 'AdminController@getAddCate')->name('adgetAddCate');
@@ -41,14 +33,8 @@ Route::middleware(['runall'])->group(function () {
             Route::get('/news', 'AdminController@getListNews')->name('adgetListNews');
             Route::get('/news-del/{id}', 'AdminController@getDelNews')->name('adgetDelNews');
 
-            // Store
-            Route::get('/store-add', 'AdminController@getAddStore')->name('adgetAddStore');
-            Route::post('/store-add', 'AdminController@postAddStore')->name('adpostAddStore');
-            Route::get('/store-edit/{id}', 'AdminController@getEditStore')->name('adgetEditStore');
-            Route::post('/store-edit/{id}', 'AdminController@postEditStore')->name('adpostEditStore');
-            Route::get('/store', 'AdminController@getListStore')->name('adgetListStore');
-            Route::get('/store-del/{id}', 'AdminController@getDelStore')->name('adgetDelStore');
-
+            Route::get('/contact-list', 'AdminController@getListContact')->name('adgetListContact');
+            Route::get('/contact-edit/{id}', 'AdminController@getContact')->name('adgetEditContact');
             // User
             Route::post('/user-add', 'AdminController@postAddUser')->name('adpostAddUser');
             Route::get('/user', 'AdminController@getListUser')->name('adgetListUser');
@@ -56,12 +42,6 @@ Route::middleware(['runall'])->group(function () {
             Route::post('/update-password', 'AdminController@postUpdatePassword')->name('adpostUpdatePassword');
 
             Route::post('/upload-img', 'AdminController@uploadImage')->name('uploadImage');
-
-            // Cart
-            Route::get('/cart-edit/{id}', 'AdminController@getEditCart')->name('adgetEditCart');
-            Route::post('/cart-edit/{id}', 'AdminController@postEditCart')->name('adpostEditCart');
-            Route::get('/cart', 'AdminController@getListCart')->name('adgetListCart');
-            Route::get('/cart-del/{id}', 'AdminController@getDelCart')->name('adgetDelCart');
         });
 
     });

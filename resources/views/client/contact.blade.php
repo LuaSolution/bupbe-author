@@ -15,7 +15,7 @@
                     <input type="email" name="email" placeholder="Email của bạn" class="contact-input" required="" />
                     <input type="number" name="phone" placeholder="Số điện thoại liên lạc" class="contact-input"
                         required="" />
-                    <textarea class="contact-textarea contact-input" name="message"
+                    <textarea class="contact-textarea contact-input" name="content"
                         placeholder="Thông tin bạn cần chia sẻ" required=""></textarea>
                     <div class="input-file-container">
                         <input class="input-file" id="myFile" name="myFile" type="file">

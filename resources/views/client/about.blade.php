@@ -12,12 +12,9 @@
                 </div>
             </div>
             <div class="col-lg-6 info pl-lg-5 mt-lg-0 mt-5 pt-lg-0 pt-3 align-center">
-                <h4 class="">Tôi là Búp Bê.</h4>
-                <p class="mt-md-4 mt-3 mb-0"> Tác giả sách thiếu nhi và thiếu niên.
-                    <br />Điều làm Búp Bê hăng say cống hiến
-                    là mang lại những câu chuyện có ý nghĩa giáo dục sức khỏe thể chất và tinh thần cho con trẻ và phụ
-                    huynh, giúp họ tìm thấy sự kết nối thương yêu ý nghĩa, sự hòa hợp và hạnh phúc trong từng trang
-                    sách.
+                <h4 class="">{{ __('i18n.i_am') }}</h4>
+                <p class="mt-md-4 mt-3 mb-0">
+                {!! __('i18n.my_profile') !!}
                 </p>
                 <img src="public/assets/images/signature.png" class="img-fluid signature" width="300px"
                     alt="my photo" />
@@ -35,39 +32,12 @@
         <div class="row middle-grids">
             <div class="col-lg-7 advantage-grid-info">
                 <div class="advantage_left">
-                    <h4>Vài lời chia sẻ bạn đọc</h4>
-                    <p class="">Sáng tác văn chương và sáng tạo nghệ thuật là niềm đam mê từ thuở nhỏ của Búp Bê. Báo
-                        Nhi Đồng, Khăn Quàng Đỏ, Mực Tím đã từng là những người bạn tinh thần thân thiết của cô. Cô bắt
-                        đầu viết văn, thơ, truyện từ khi học tiểu học.
-                        <br />
-                        Năm lớp 8, câu chuyện của cô đạt giải Nhất trong cuộc thi “Cùng Nhau Vì Màu Xanh” do Sở Giáo
-                        Dục&Đào Tạo Khánh Hòa tổ chức, cùng các bài viết đăng trên Báo Khăn Quàng Đỏ suốt những năm
-                        trung học cơ sở.
-                        <br />
-                        Lớn lên cùng niềm đam mê với giáo dục và tình yêu dành cho quê hương đất nước, mặc dù được đi du
-                        lịch, học tập và làm việc tại các quốc gia tiên tiến như Pháp, Mỹ… cô hiện là nhà huấn luyện cá
-                        nhân, huấn luyện sức khỏe được chứng nhận tại Hoa Kỳ nhưng Búp Bê vẫn quyết định quay về Việt
-                        Nam để cống hiến và cho các thế hệ trẻ Việt Nam biết rằng, đất nước này là một nơi đẹp đẽ và
-                        đáng sống, con người và văn hóa Việt Nam tuyệt vời và độc đáo.
-                        <br />Chỉ cần các bạn nhận ra điều ấy,
-                        hạnh phúc và thịnh vượng sẽ trở lại trên quê hương Âu Lạc Tiên Rồng.
+                    <!-- <h4>Vài lời chia sẻ bạn đọc</h4> -->
+                    <p class="">
+                    {!! __('i18n.my_profile2') !!}
                     </p>
                     <p class="mb-0">
-                        <h3><b>Sáng tác ấu thơ:</b></h3>
-                        <h5>Đồng Rau Muống</h5>
-                        <b>“</b> Sáng em đi cùng mẹ
-                        <br />Bế em trai trên tay
-                        <br />Dắt dìu nhau trong nắng
-                        <br />Trên cánh đồng mướt xanh
-                        <br />Con đường dài như ngắn
-                        <br />Có bạn bò đưa chân
-                        <br />Tung tăng cùng chim sẻ
-                        <br />Hót líu lo yêu đời
-                        <br />Các bạn em cùng gió
-                        <br />Thương nhau như bạn thân
-                        <br />Bạn chúc em chăm học
-                        <br />Em chúc bạn vui tươi
-                        <br />Ai ai cũng thích cười.<b>”</b>
+                    {!! __('i18n.childhood') !!}
                     </p>
                     <!-- <a href="#resume" class="primary-btn-style btn-primary btn mt-lg-5 mt-4">Download CV</a>
                         <a href="#contact" class="secondary-btn-style btn-secondary btn mt-lg-5 mt-4 ml-1">Hire

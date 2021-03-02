@@ -4,39 +4,9 @@
                 <li class="@yield('home_active')">
                         <a href="{{ route('adgetHome') }}">
                                 <i class="icon-home"></i>
-                                Home
+                                Dashboard
                         </a>
                 </li>
-                <!-- <li class="@yield('list_cart_active')">
-                        <a href="{{ route('adgetListCart') }}">
-                                <i class="icon icon-bill"></i>
-                                Danh sách đơn hàng
-                        </a>
-                </li>
-                <li class="@yield('add_product_active')">
-                        <a href="{{ route('adgetAddProduct') }}">
-                                <i class="icon-form"></i>
-                                Thêm sản phẩm mới
-                        </a>
-                </li>
-                <li class="@yield('list_product_active')">
-                        <a href="{{ route('adgetListProduct') }}">
-                                <i class="icon icon-list"></i>
-                                Danh sách sản phẩm
-                        </a>
-                </li>
-                <li class="@yield('add_cate_active')">
-                        <a href="{{ route('adgetAddCate') }}">
-                                <i class="icon-form"></i>
-                                Thêm danh mục mới
-                        </a>
-                </li>
-                <li class="@yield('list_cate_active')">
-                        <a href="{{ route('adgetListCate') }}">
-                                <i class="icon icon-list"></i>
-                                Danh sách danh mục
-                        </a>
-                </li> -->
                 <li class="@yield('add_news_active')">
                         <a href="{{ route('adgetAddNews') }}">
                                 <i class="icon-form"></i>
@@ -48,18 +18,11 @@
                                 <i class="icon icon-list"></i>
                                 Danh sách bài viết</a>
                 </li>
-                <!-- <li class="@yield('add_store_active')">
-                        <a href="{{ route('adgetAddStore') }}">
-                                <i class="icon-form"></i>
-                                Thêm cửa hàng mới
-                        </a>
-                </li>
-                <li class="@yield('list_store_active')">
-                        <a href="{{ route('adgetListStore') }}">
+                <li class="@yield('list_contact_active')">
+                        <a href="{{ route('adgetListContact') }}">
                                 <i class="icon icon-list"></i>
-                                Danh sách cửa hàng
-                        </a>
-                </li> -->
+                                Danh sách liên hệ</a>
+                </li>
                 <li class="@yield('list_user_active')">
                         <a href="{{ route('adgetListUser') }}">
                                 <i class="icon icon-user"></i>

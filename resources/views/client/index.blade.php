@@ -7,16 +7,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 content-left">
-                    <h3>Chào mừng các bạn đến với trang web của Búp Bê</h3>
-                    <p class="mb-0">Búp Bê, tác giả sách giáo dục thể chất và
-                        tinh thần cho thiếu nhi và thiếu niên.
-                        <br />
-                        <br />Nơi đây quý phụ huynh có thể tìm hiểu thông tin về Búp
-                        Bê, về các cuốn sách của cô, cùng các chương trình đào tạo về cách dùng sách làm công cụ kết nối
-                        giữa phụ huynh và con trẻ.
-                        <br />
-                        <br />Nơi các bạn có thể gửi các thử thách hoàn thành cho tác giả, chia sẻ
-                        cảm nhận và cùng nhau xây dựng một thế giới hòa bình, hạnh phúc.</p>
+                <h3>{{ __('i18n.welcome1') }}</h3>
+                    <p class="mb-0">{{ __('i18n.welcome2') }}</p>
                 </div>
                 <div class="col-lg-4 content-photo mt-lg-0 mt-sm-5 mb-md-0 mb-4">
                     <a href="#img">
@@ -103,9 +95,7 @@
         <div class="container py-lg-5">
             <div class="row">
                 <div class="col-lg-9">
-                    <h4>" Tôi mong ước vạn vật ở thế giới này hòa hợp với nhau từ gia đình, nhà trường, xã hội cho đến
-                        cây cỏ, muôn thú và thiên nhiên. Con người cần phải hiểu rõ bản thân mới có thể hòa hợp với thế
-                        giới xung quanh."</h4>
+                    <h4>{{ __('i18n.quote') }}</h4>
                 </div>
                 <div class="col-lg-3 mt-lg-0 mt-3 text-lg-center tablet-grid">
                     <img src="assets/images/client2.jpg" alt="" class="img-fluid" />
@@ -125,22 +115,9 @@
     <div class="container py-lg-5 py-md-3">
         <div class="row">
             <div class="col-lg-5">
-                <h3>Góc giới thiệu</h3>
-                <h5 class="mt-3">Giới thiệu bộ sách <b>Những chuyến phiêu lưu của mèo Tita</b></h5>
-                <p class="mt-4"> 5 tập đầu tiên của bộ sách kể về cô mèo nhỏ Tita, Những chuyến phiêu lưu của mèo Tita
-                    gồm 5 câu chuyện tiếp nối nhau kể về chuyến phiêu lưu của Tita, vốn là cô mèo mồ côi, may mắn gặp
-                    được một bạn thiếu niên tốt bụng nhận nuôi dưỡng.
-                    <br />
-                    Với tính cách ưa khám phá, vui vẻ, hay giúp đỡ, Tita được cư dân nơi mình đang sống - môi trường
-                    quốc tế đa văn hóa, gần gũi thiên nhiên - quý mến.
-                    <br />
-                    Khi bạn đọc nhí đồng hành cùng mèo Tita qua nét vẽ sống động, gần gũi của họa sĩ Lam trong chuyến
-                    phiêu lưu đầy màu sắc ấy, các em cũng hiểu thêm về giá trị của tình bạn chân thành, lòng biết ơn đối
-                    với những điều xung quanh và tầm quan trọng trong ý thức nâng cao sức khỏe thể chất, cùng việc nuôi
-                    dưỡng tinh thần tích cực.
-                    <br />
-                    Tiếp cận bộ sách, phụ huynh có nhiều cơ hội để cùng giáo dục và chia sẻ tình thương với con mình,
-                    thông qua những câu chuyện về sự vâng lời, lòng tự trọng, sự khiêm nhường.</p>
+                <!-- <h3>Góc giới thiệu</h3> -->
+                <h5 class="mt-3">{!!__('i18n.book_title2') !!}</h5>
+                <p class="mt-4">{!!__('i18n.book_desc') !!}</p>
             </div>
             <div class="col-lg-7 mt-lg-0 mt-4">
                 <div class="img-block">
