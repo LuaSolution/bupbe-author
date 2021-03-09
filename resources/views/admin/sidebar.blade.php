@@ -23,6 +23,11 @@
                                 <i class="icon icon-list"></i>
                                 Danh sách liên hệ</a>
                 </li>
+                <li class="@yield('list_order_active')">
+                        <a href="{{ route('adgetListOrder') }}">
+                                <i class="icon icon-list"></i>
+                                Danh sách đơn hàng</a>
+                </li>
                 <li class="@yield('list_user_active')">
                         <a href="{{ route('adgetListUser') }}">
                                 <i class="icon icon-user"></i>

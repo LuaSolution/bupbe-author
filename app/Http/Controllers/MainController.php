@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Config;
 use App\Mail;
 use App\News;
+use App\Order;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -85,6 +86,22 @@ class MainController extends Controller
 
         $m = new Mail();
         $result = $m->insertMail($dataInsert);
+        return redirect()->back();
+    }
+
+    public function  postOrder(Request $req) {
+        $dataInsert = [
+            'name' => $req->name,
+            'address' => $req->address,
+            'phone' => $req->phone,
+            'status' => 0,
+            'note' => $req->note,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+
+        $m = new Order();
+        $result = $m->insertOrder($dataInsert);
         return redirect()->back();
     }
 }

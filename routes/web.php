@@ -17,14 +17,6 @@ Route::middleware(['runall', 'locale'])->group(function () {
             Route::get('/', 'AdminController@getHome')->name('adgetHome');
             Route::post('/config', 'AdminController@updateConfig')->name('adupdateConfig');
 
-            // Cate
-            Route::get('/cate-add', 'AdminController@getAddCate')->name('adgetAddCate');
-            Route::post('/cate-add', 'AdminController@postAddCate')->name('adpostAddCate');
-            Route::get('/cate-edit/{id}', 'AdminController@getEditCate')->name('adgetEditCate');
-            Route::post('/cate-edit/{id}', 'AdminController@postEditCate')->name('adpostEditCate');
-            Route::get('/cate', 'AdminController@getListCate')->name('adgetListCate');
-            Route::get('/cate-del/{id}', 'AdminController@getDelCate')->name('adgetDelCate');
-
             // News
             Route::get('/news-add', 'AdminController@getAddNews')->name('adgetAddNews');
             Route::post('/news-add', 'AdminController@postAddNews')->name('adpostAddNews');
@@ -32,9 +24,13 @@ Route::middleware(['runall', 'locale'])->group(function () {
             Route::post('/news-edit/{id}', 'AdminController@postEditNews')->name('adpostEditNews');
             Route::get('/news', 'AdminController@getListNews')->name('adgetListNews');
             Route::get('/news-del/{id}', 'AdminController@getDelNews')->name('adgetDelNews');
-
+//contact
             Route::get('/contact-list', 'AdminController@getListContact')->name('adgetListContact');
             Route::get('/contact-edit/{id}', 'AdminController@getContact')->name('adgetEditContact');
+            //order
+            Route::get('/order-list', 'AdminController@getListOrder')->name('adgetListOrder');
+            Route::get('/order-edit/{id}', 'AdminController@getOrder')->name('adgetEditOrder');
+            Route::get('/order-confirm/{id}', 'AdminController@getConfimOrder')->name('adgetConfimOrder');
             // User
             Route::post('/user-add', 'AdminController@postAddUser')->name('adpostAddUser');
             Route::get('/user', 'AdminController@getListUser')->name('adgetListUser');
@@ -54,7 +50,11 @@ Route::middleware(['runall', 'locale'])->group(function () {
     Route::get('/lien-he', function () {
         return view('client.contact');
     })->name('getContact');
+    Route::get('/dat-sach', function () {
+        return view('client.orderbook');
+    })->name('getOrderBook');
     Route::post('/post-contact', 'MainController@postContact')->name('postContact');
+    Route::post('/post-order', 'MainController@postOrder')->name('postOrder');
     Route::get('/tin-tuc', 'MainController@getAllNews')->name('getAllNews');
     Route::get('/tin-tuc/{news}', 'MainController@getNews')->name('getNews');
 });

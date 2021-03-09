@@ -72,6 +72,23 @@ Author URL: http://w3layouts.com
       font-weight: normal;
     }
   </style>
+
+<style>
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+</style>
 </head>
 
 <body>
@@ -105,9 +122,20 @@ Author URL: http://w3layouts.com
               <a class="nav-link pl-0 pr-0 font-weight-bold" href="{{ url('tin-tuc') }}">
                 Bài viết</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-lg-4">
               <a class="nav-link pl-0 pr-0 font-weight-bold" href="{{ url('lien-he') }}">
                 Liên hệ</a>
+            </li>
+            <li class="nav-item mr-lg-4">
+              <a class="nav-link pl-0 pr-0 font-weight-bold" href="{{ url('dat-sach') }}">
+                Đặt sách</a>
+            </li>
+            <li class="nav-item">
+            @if(app()->getLocale() == 'en')
+            <a  class="nav-link pl-0 pr-0 font-weight-bold" href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a>
+            @else
+            <a  class="nav-link pl-0 pr-0 font-weight-bold" href="{!! route('user.change-language', ['en']) !!}">English</a>
+            @endif
             </li>
           </ul>
         </div>
@@ -141,8 +169,7 @@ Author URL: http://w3layouts.com
           <div class="row">
             <div class="col-lg-8 footer-left">
               <p class="m-0">© Copyright 2020 Eccentric Portfolio.
-              <a href="{!! route('user.change-language', ['en']) !!}">English</a>
-<a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a>
+              
                 <!-- <a href="https://w3layouts.com">W3layouts</a></p> -->
             </div>
             <div class="col-lg-4 footer-right text-lg-right text-center mt-lg-0 mt-3">

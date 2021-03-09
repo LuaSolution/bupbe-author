@@ -9,6 +9,8 @@ use App\News;
 use App\Product;
 use App\Store;
 use App\User;
+use App\Order;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -679,189 +681,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Get add store page
-     */
-    public function getAddStore()
-    {
-
-        return view('admin.store_add', $this->data);
-    }
-
-    /**
-     * Post add store page
-     */
-    public function postAddStore(Request $request)
-    {
-
-        // title
-        $title = $request->input('title');
-        if (!$title) {
-            $title = "Store " . time();
-        }
-        // slug
-        $slug = $request->input('slug');
-        if (!$slug) {
-            $slug = str_slug($title, '-');
-        } else {
-            $slug = str_slug($slug, '-');
-        }
-        // coverFile
-        $coverFile = $request->file('cover');
-        $cover = "";
-        if ($request->hasFile('cover')) {
-            $cover = $slug . '.' . $request->cover->extension();
-            $request->cover->storeAs('img/post/', $cover);
-            $cover .= '?n=' . time();
-        }
-        // pos
-        $pos = $request->input('pos');
-        if (!$pos) {
-            $pos = 999;
-        }
-        // description
-        $description = $request->input('description');
-        if (!$description) {
-            $description = "";
-        }
-        // content
-        $content = $request->input('content');
-        if (!$content) {
-            $content = "";
-        }
-
-        $dataInsert = [
-            'title' => $title,
-            'slug' => $slug,
-            'cover' => $cover,
-            'pos' => $pos,
-            'description' => $description,
-            'content' => $content,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ];
-
-        $storeModel = new Store();
-        $result = $storeModel->insertStore($dataInsert);
-        if ($result > 0) {
-            return redirect()->route('adgetListStore')->with('success', 'Thêm thành công!');
-        } else {
-            return redirect()->route('adgetListStore')->with('error', 'Thêm thất bại!');
-        }
-
-    }
-
-    /**
-     * Get edit store page
-     */
-    public function getEditStore($id)
-    {
-
-        $storeModel = new Store();
-        $store = $storeModel->getStoreById($id);
-
-        if ($store) {
-            $this->data['store'] = $store;
-            return view('admin.store_edit', $this->data);
-        } else {
-            return redirect()->route('adgetListStore');
-        }
-
-    }
-
-    /**
-     * Store edit store page
-     */
-    public function postEditStore($id, Request $request)
-    {
-
-        // title
-        $title = $request->input('title');
-        if (!$title) {
-            $title = "Store " . time();
-        }
-        // slug
-        $slug = $request->input('slug');
-        if (!$slug) {
-            $slug = str_slug($title, '-');
-        } else {
-            $slug = str_slug($slug, '-');
-        }
-        // coverFile
-        $coverFile = $request->file('cover');
-        $cover = "";
-        if ($request->hasFile('cover')) {
-            $cover = $slug . '.' . $request->cover->extension();
-            $request->cover->storeAs('img/post/', $cover);
-            $cover .= '?n=' . time();
-        }
-        // pos
-        $pos = $request->input('pos');
-        if (!$pos) {
-            $pos = 999;
-        }
-        // description
-        $description = $request->input('description');
-        if (!$description) {
-            $description = "";
-        }
-        // content
-        $content = $request->input('content');
-        if (!$content) {
-            $content = "";
-        }
-
-        $dataUpdate = [
-            'title' => $title,
-            'slug' => $slug,
-            'pos' => $pos,
-            'description' => $description,
-            'content' => $content,
-            'updated_at' => date('Y-m-d H:i:s'),
-        ];
-
-        if ($cover != "") {
-            $dataUpdate['cover'] = $cover;
-        }
-
-        $storeModel = new Store();
-        $result = $storeModel->updateStore($id, $dataUpdate);
-        if ($result > 0) {
-            return redirect()->route('adgetEditStore', ['id' => $id])->with('success', 'Cập nhật thành công!');
-        } else {
-            return redirect()->route('adgetEditStore', ['id' => $id])->with('error', 'Cập nhật thất bại!');
-        }
-
-    }
-
-    /**
-     * Get list store page
-     */
-    public function getListStore()
-    {
-
-        $storeModel = new Store();
-        $stores = $storeModel->getListStore();
-        $this->data['stores'] = $stores;
-
-        return view('admin.store_list', $this->data);
-    }
-
-    /**
-     * Delete store
-     */
-    public function getDelStore($id)
-    {
-
-        $storeModel = new Store();
-        $result = $storeModel->deleteStore($id);
-
-        if ($result > 0) {
-            return redirect()->route('adgetListStore')->with('success', 'Xóa thành công!');
-        } else {
-            return redirect()->route('adgetListStore')->with('error', 'Xóa thất bại!');
-        }
-    }
-    /**
      * Get add cate page
      */
     public function getAddCate()
@@ -1009,5 +828,35 @@ class AdminController extends Controller
         } else {
             return redirect()->route('adgetListCate')->with('error', 'Xóa thất bại!');
         }
+    }
+
+    public function getListOrder()
+    {
+
+        $newsModel = new Order();
+        $newss = $newsModel->getListContact();
+        $this->data['orders'] = $newss;
+
+        return view('admin.order_list', $this->data);
+    }
+
+    public function getOrder($id) {
+
+        $m = new Order();
+        $store = $m->getById($id);
+
+        if ($store) {
+            $this->data['order'] = $store;
+            return view('admin.order_edit', $this->data);
+        } else {
+            return redirect()->route('adgetListOrder');
+        }
+    }
+
+    public function getConfimOrder($id) {
+        DB::table('orders')
+        ->where('id', $id)
+        ->update(['status' => 1]);
+        return redirect()->back();
     }
 }
